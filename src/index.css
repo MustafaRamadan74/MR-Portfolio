@@ -1,0 +1,368 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== AuthKit CSS Custom Properties ===== */
+:root {
+  /* Colors */
+  --color-midnight-canvas: #05060f;
+  --color-steel-plate: #2f343e;
+  --color-fog-veil: #9da7ba;
+  --color-moon-mist: #c7d3ea;
+  --color-frost-glow: #d1e4fa;
+  --color-ice-highlight: #d8ecf8;
+  --gradient-ice-highlight: linear-gradient(180deg, #d8ecf8 0%, #98c0ef 100%);
+  --color-pure-white: #ffffff;
+  --color-void-violet: #663af3;
+  --color-blueprint-blue: #b6d9fc;
+  --color-ember-glow: #e46d4c;
+  --color-signal-blue: #027dea;
+  --color-deep-teal: #269684;
+  --color-gridline-blue: #3f4959;
+  --color-glass-edge: rgba(186, 215, 247, 0.12);
+  --color-luminous-fill: rgba(199, 211, 234, 0.12);
+
+  /* Fonts */
+  --font-untitled-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-aeonikpro: 'Space Grotesk', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-dotdigital: 'JetBrains Mono', monospace;
+
+  /* Shadows */
+  --shadow-subtle: rgba(186, 215, 247, 0.12) 0px 0px 0px 1px inset;
+  --shadow-card: inset 0 1px 1px rgba(199, 211, 234, 0.12), inset 0 24px 48px rgba(199, 211, 234, 0.05), 0 24px 32px rgba(6, 6, 14, 0.7);
+  --shadow-modal: inset 0 1px 1px rgba(216, 236, 248, 0.2), inset 0 24px 48px rgba(168, 216, 245, 0.06), 0 16px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== Base Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #05060f;
+}
+
+body {
+  font-family: var(--font-untitled-sans);
+  background-color: #05060f;
+  color: #d1e4fa;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ===== Custom Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #05060f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(186, 215, 247, 0.2);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(186, 215, 247, 0.35);
+}
+
+/* ===== Selection ===== */
+::selection {
+  background: rgba(102, 58, 243, 0.4);
+  color: #ffffff;
+}
+
+/* ===== Typography Utilities ===== */
+.font-display {
+  font-family: var(--font-aeonikpro);
+}
+
+.font-eyebrow {
+  font-family: var(--font-dotdigital);
+}
+
+/* Skywash Gradient for Display Headings */
+.text-skywash {
+  background: linear-gradient(180deg, #d8ecf8 0%, #98c0ef 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Section Eyebrow Label */
+.eyebrow-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.eyebrow-line {
+  flex: 1;
+  max-width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(186, 215, 247, 0.15), transparent);
+}
+
+.eyebrow-text {
+  font-family: var(--font-dotdigital);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #c7d3ea;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ===== Blueprint Grid & Atmosphere ===== */
+.authkit-canvas {
+  position: relative;
+  background-color: #05060f;
+  min-height: 100vh;
+}
+
+/* Blueprint Grid Background */
+.authkit-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(186, 215, 247, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(186, 215, 247, 0.05) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+  z-index: 0;
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 30%, black 40%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 30%, black 40%, transparent 100%);
+}
+
+/* Conic Spotlight Halo at Top Center */
+.spotlight-halo {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1000px;
+  height: 500px;
+  background:
+    radial-gradient(ellipse 70% 40% at 50% -10%, rgba(124, 145, 182, 0.22), transparent 70%),
+    conic-gradient(from 180deg at 50% 0%, transparent 45%, rgba(124, 145, 182, 0.12) 49%, rgba(186, 215, 247, 0.22) 50%, rgba(124, 145, 182, 0.12) 51%, transparent 55%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ===== Glass Card (AuthKit Style) ===== */
+.glass-card {
+  background: rgba(186, 214, 247, 0.03);
+  border-radius: 16px;
+  border: 1px solid rgba(186, 215, 247, 0.12);
+  box-shadow:
+    inset 0 1px 1px rgba(199, 211, 234, 0.12),
+    inset 0 24px 48px rgba(199, 211, 234, 0.05),
+    0 24px 32px rgba(6, 6, 14, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(186, 215, 247, 0.24);
+  box-shadow:
+    inset 0 1px 1px rgba(216, 236, 248, 0.2),
+    inset 0 24px 48px rgba(168, 216, 245, 0.08),
+    0 24px 36px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(186, 215, 247, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Modal / Hero Card Surface (Level 3 - Deep Glass) */
+.deep-glass-card {
+  background: rgba(5, 6, 15, 0.94);
+  border-radius: 16px;
+  border: 1px solid rgba(186, 215, 247, 0.16);
+  box-shadow:
+    inset 0 1px 1px rgba(216, 236, 248, 0.2),
+    inset 0 24px 48px rgba(168, 216, 245, 0.06),
+    0 16px 32px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Elevator Screen Panels */
+.elevator-screen {
+  background: rgba(5, 6, 15, 0.85);
+  border-radius: 16px;
+  border: 1px solid rgba(186, 215, 247, 0.12);
+  box-shadow:
+    inset 0 1px 1px rgba(216, 236, 248, 0.15),
+    inset 0 16px 32px rgba(168, 216, 245, 0.04),
+    0 16px 32px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ===== Buttons ===== */
+
+/* Primary CTA: Void Violet */
+.btn-violet {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #663af3;
+  color: #ffffff;
+  border-radius: 999px;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 10px 24px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1) inset, 0 4px 12px rgba(102, 58, 243, 0.35);
+  cursor: pointer;
+}
+
+.btn-violet:hover {
+  background-color: #754df7;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2) inset, 0 6px 20px rgba(102, 58, 243, 0.5);
+  transform: translateY(-1px);
+}
+
+/* Pill Button (Primary Ghost) */
+.btn-ghost-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(186, 214, 247, 0.06);
+  color: #ffffff;
+  border-radius: 999px;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 8px 18px;
+  border: 1px solid rgba(186, 215, 247, 0.12);
+  box-shadow: inset 0 1px 1px rgba(216, 236, 248, 0.1);
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.btn-ghost-pill:hover {
+  background: rgba(186, 214, 247, 0.12);
+  border-color: rgba(186, 215, 247, 0.24);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* Pill Button (Outlined) */
+.btn-outline-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: #d1e4fa;
+  border-radius: 999px;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 8px 18px;
+  border: 1px solid rgba(186, 215, 247, 0.14);
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.btn-outline-pill:hover {
+  background: rgba(186, 214, 247, 0.08);
+  border-color: rgba(186, 215, 247, 0.28);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* Backward compatibility for previous classes */
+.btn-primary {
+  @apply btn-violet;
+}
+
+.btn-outline {
+  @apply btn-outline-pill;
+}
+
+/* ===== Badges & Tags ===== */
+.tech-tag {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-untitled-sans);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: rgba(199, 211, 234, 0.08);
+  color: #d1e4fa;
+  border: 1px solid rgba(186, 215, 247, 0.12);
+  box-shadow: inset 0 1px 1px rgba(216, 236, 248, 0.08);
+  transition: all 0.2s ease;
+}
+
+.tech-tag:hover {
+  background: rgba(199, 211, 234, 0.16);
+  border-color: rgba(186, 215, 247, 0.24);
+  color: #ffffff;
+}
+
+/* Feature Icon Tile (Circle 9999px) */
+.feature-icon-tile {
+  width: 56px;
+  height: 56px;
+  border-radius: 9999px;
+  background: rgba(186, 214, 247, 0.06);
+  border: 1px solid rgba(186, 215, 247, 0.12);
+  box-shadow: inset 0 1px 1px rgba(216, 236, 248, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #d1e4fa;
+  transition: all 0.3s ease;
+}
+
+.feature-icon-tile:hover {
+  background: rgba(186, 214, 247, 0.12);
+  border-color: rgba(186, 215, 247, 0.28);
+  color: #ffffff;
+  box-shadow: 0 0 16px rgba(186, 215, 247, 0.12);
+}
+
+/* Timeline */
+.timeline-line {
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(186, 215, 247, 0.25),
+    rgba(186, 215, 247, 0.25),
+    transparent
+  );
+}
+
+.timeline-dot {
+  background-color: #663af3;
+  box-shadow: 0 0 10px rgba(102, 58, 243, 0.6), 0 0 0 2px rgba(186, 215, 247, 0.15);
+}
+
+/* Content Area - 80% of screen width */
+.content-area {
+  width: 90%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 1.5rem 0.5rem 5rem 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .content-area {
+    width: 80%;
+    padding: 2rem 1rem 5rem 1rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .content-area {
+    width: 80%;
+    padding: 2.5rem 1.5rem 6rem 1.5rem;
+  }
+}
