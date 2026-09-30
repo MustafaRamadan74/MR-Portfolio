@@ -26,7 +26,7 @@ export default function ProjectImage({ images, title, placeholder, isLongImage }
       >
         <div className="absolute inset-0 w-full h-full overflow-hidden">
           <motion.img
-            src={`/images/projects/${firstValid}`}
+            src={`${import.meta.env.BASE_URL}images/projects/${firstValid}`}
             alt={title}
             className={`w-full h-auto object-cover origin-top ${isTall ? 'scale-125' : 'w-full h-full object-cover transition-transform duration-500 group-hover:scale-105'}`}
             animate={

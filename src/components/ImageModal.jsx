@@ -80,7 +80,7 @@ export default function ImageModal({ isOpen, onClose, images = [], initialIndex 
             <AnimatePresence mode="wait">
               <motion.img
                 key={images[index]}
-                src={`/images/projects/${images[index]}`}
+                src={`${import.meta.env.BASE_URL}images/projects/${images[index]}`}
                 alt={`${title} screenshot ${index + 1}`}
                 initial={{ opacity: 0, scale: 0.97 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -125,7 +125,7 @@ export default function ImageModal({ isOpen, onClose, images = [], initialIndex 
                   }`}
                 >
                   <img
-                    src={`/images/projects/${img}`}
+                    src={`${import.meta.env.BASE_URL}images/projects/${img}`}
                     alt={`Thumbnail ${i + 1}`}
                     className="w-full h-full object-cover object-top"
                   />

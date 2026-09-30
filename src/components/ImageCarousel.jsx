@@ -64,7 +64,7 @@ export default function ImageCarousel({ images = [], title, isLongImage }) {
             transition={{ duration: 0.4 }}
           >
             <motion.img
-              src={`/images/projects/${currentImg}`}
+              src={`${import.meta.env.BASE_URL}images/projects/${currentImg}`}
               alt={`${title} - ${current + 1}`}
               className={`w-full h-auto object-cover origin-top ${isTall ? 'scale-125' : 'w-full h-full object-cover'}`}
               animate={
