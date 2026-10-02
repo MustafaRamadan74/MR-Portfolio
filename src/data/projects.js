@@ -22,7 +22,7 @@ export const allProjects = [
       'TSP Optimization',
       'Tailwind CSS',
     ],
-    images: ['georoute1.png', 'georoute2.jpg', 'georoute3.jpg', 'georoute4.png'],
+    images: ['georoute1.png', 'georoute2.png', 'georoute3.jpg'],
     featured: true,
     badge: 'Flagship Web GIS',
     live: 'https://mustafaramadan74.github.io/Navigation-System/',
